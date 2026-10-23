@@ -1,0 +1,124 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Supplier {
+  id           String    @id @default(cuid())
+  name         String
+  type         String    @default("CJ_DROPSHIPPING") // CJ_DROPSHIPPING, ALIEXPRESS, NACIONAL, CUSTOM
+  contactEmail String?
+  websiteUrl   String?
+  apiConfig    String?   // JSON com credenciais de API do fornecedor
+  products     Product[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model Product {
+  id             String           @id @default(cuid())
+  title          String
+  slug           String           @unique
+  description    String
+  category       String
+  tags           String           @default("") // Comma-separated tags
+  costPrice      Float            // Preço de custo no fornecedor
+  sellingPrice   Float            // Preço de venda ao consumidor
+  compareAtPrice Float?           // Preço original para promoção (De R$ X Por R$ Y)
+  markupPercent  Float            @default(100.0) // Margem calculada: (venda - custo)/custo * 100
+  stockQuantity  Int              @default(999)
+  images         String           // JSON array de URLs
+  isActive       Boolean          @default(true)
+  featured       Boolean          @default(false)
+  supplierSku    String?
+  supplierUrl    String?
+  syncChannels   String           @default("[]") // JSON array: ["SHOPIFY", "NUVEMSHOP", "MERCADOLIVRE"]
+  
+  supplierId     String?
+  supplier       Supplier?        @relation(fields: [supplierId], references: [id])
+  variants       ProductVariant[]
+  orderItems     OrderItem[]
+
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model ProductVariant {
+  id             String   @id @default(cuid())
+  productId      String
+  product        Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  title          String   // ex: "Azul / G"
+  sku            String   @unique
+  costPrice      Float
+  sellingPrice   Float
+  stockQuantity  Int      @default(100)
+  attributes     String   // JSON: {"cor": "Azul", "tamanho": "G"}
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Order {
+  id               String       @id @default(cuid())
+  orderNumber      String       @unique
+  customerName     String
+  customerEmail    String
+  customerPhone    String?
+  shippingAddress  String       // JSON com rua, número, bairro, cidade, estado, CEP
+  status           String       @default("PENDING") // PENDING, PAID, ORDERED_SUPPLIER, SHIPPED, DELIVERED, CANCELED
+  originChannel    String       @default("STOREFRONT") // STOREFRONT, SHOPIFY, NUVEMSHOP, MERCADOLIVRE, SHOPEE
+  externalOrderId  String?      // ID na Shopify / Nuvemshop / ML
+  
+  totalAmount      Float        // Valor pago pelo cliente
+  costAmount       Float        // Custo total dos produtos no fornecedor
+  profitAmount     Float        // Lucro líquido bruto da operação
+  
+  trackingCode     String?      // Código de rastreio dos correios / transportadora
+  trackingUrl      String?
+  carrier          String?      // Ex: Correios, Cainiao, Yanwen
+  supplierOrderId  String?      // ID da ordem gerada no fornecedor de dropshipping
+  
+  items            OrderItem[]
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+}
+
+model OrderItem {
+  id           String   @id @default(cuid())
+  orderId      String
+  order        Order    @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  productId    String
+  product      Product  @relation(fields: [productId], references: [id])
+  title        String
+  variantTitle String?
+  quantity     Int
+  unitPrice    Float
+  unitCost     Float
+  totalPrice   Float
+}
+
+model IntegrationChannel {
+  id           String    @id @default(cuid())
+  channel      String    @unique // SHOPIFY, NUVEMSHOP, MERCADOLIVRE, SHOPEE
+  name         String
+  isEnabled    Boolean   @default(false)
+  credentials  String?   // JSON com tokens e chaves de API
+  settings     String?   // JSON com regras de markup automático e sincronização
+  lastSyncAt   DateTime?
+  syncStatus   String    @default("IDLE") // IDLE, SYNCING, ERROR, SUCCESS
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
+
+model SyncLog {
+  id         String   @id @default(cuid())
+  channel    String
+  action     String   // EXPORT_PRODUCT, IMPORT_ORDER, SYNC_STOCK, UPDATE_TRACKING
+  status     String   // SUCCESS, ERROR, WARNING
+  message    String
+  payload    String?  // JSON detalhado
+  createdAt  DateTime @default(now())
+}
