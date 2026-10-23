@@ -47,7 +47,7 @@ export default async function HomePage() {
                 </h1>
 
                 <p className="text-lg text-slate-600 max-w-2xl mx-auto lg:mx-0">
-                  Produtos originais com garantia incondicional de 30 dias, frete grátis expresso e
+                  Produtos originais com garantia de 7 dias (direito de arrependimento), frete grátis expresso e
                   código de rastreio em tempo real atualizado a cada etapa.
                 </p>
 
@@ -146,7 +146,7 @@ export default async function HomePage() {
                 </div>
                 <div>
                   <h4 className="text-sm font-bold text-slate-900">Devolução Fácil</h4>
-                  <p className="text-xs text-slate-500">30 dias para testar o produto</p>
+                  <p className="text-xs text-slate-500">7 dias conforme o Código de Defesa do Consumidor</p>
                 </div>
               </div>
 

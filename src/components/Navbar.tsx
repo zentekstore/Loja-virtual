@@ -27,7 +27,7 @@ export function Navbar() {
         </span>
         <span className="hidden sm:inline opacity-40">|</span>
         <span className="hidden sm:flex items-center gap-1">
-          <ShieldCheck className="w-3.5 h-3.5 inline text-emerald-300" /> Garantia de 30 Dias
+          <ShieldCheck className="w-3.5 h-3.5 inline text-emerald-300" /> Garantia de 7 Dias
         </span>
         <span className="hidden md:inline opacity-40">|</span>
         <span className="hidden md:flex items-center gap-1 text-amber-200">

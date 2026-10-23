@@ -306,7 +306,7 @@ export default function CheckoutPage() {
 
               <div className="flex items-center justify-center gap-2 text-xs text-slate-400 pt-2">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
-                <span>Garantia de 30 dias com reembolso total</span>
+                <span>Garantia de 7 dias com reembolso total</span>
               </div>
             </div>
           </div>

@@ -37,9 +37,9 @@ export function Footer() {
               <RefreshCw className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="font-bold text-white text-base">Garantia Incondicional</h4>
+              <h4 className="font-bold text-white text-base">Garantia Legal de 7 Dias</h4>
               <p className="text-sm text-gray-400 mt-1">
-                30 dias para devolução ou troca sem burocracia.
+                7 dias para devolução ou troca sem burocracia (Art. 49 CDC).
               </p>
             </div>
           </div>

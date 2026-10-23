@@ -231,7 +231,7 @@ export function ProductDetailsClient({ product }: Props) {
         <div className="grid grid-cols-2 gap-3 pt-4 border-t border-slate-200 text-xs text-slate-600">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-600" />
-            <span>Garantia de 30 dias</span>
+            <span>Garantia legal de 7 dias</span>
           </div>
           <div className="flex items-center gap-2">
             <RefreshCw className="w-4 h-4 text-sky-600" />
