@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
+import { HeroProductCarousel } from "@/components/HeroProductCarousel";
 import {
   ArrowRight,
   ShieldCheck,
@@ -22,6 +23,37 @@ export default async function HomePage() {
     orderBy: { createdAt: "desc" },
     include: { variants: true },
   });
+
+  const cities = [
+    { city: "São Paulo", state: "SP", timeAgo: "há 3 min" },
+    { city: "Rio de Janeiro", state: "RJ", timeAgo: "há 7 min" },
+    { city: "Curitiba", state: "PR", timeAgo: "há 12 min" },
+    { city: "Belo Horizonte", state: "MG", timeAgo: "há 15 min" },
+  ];
+
+  const carouselProducts =
+    products.length > 0
+      ? products.slice(0, 4).map((p, idx) => {
+          const imgs = JSON.parse(p.images || "[]");
+          return {
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            price: p.sellingPrice,
+            compareAtPrice: p.compareAtPrice,
+            image: imgs[0] || "",
+            badge:
+              idx === 0
+                ? "🔥 Mais Vendido #1"
+                : idx === 1
+                ? "⭐ Alta Demanda"
+                : idx === 2
+                ? "💼 Destaque da Semana"
+                : "✨ Tendência",
+            recentBuyer: cities[idx % cities.length],
+          };
+        })
+      : undefined;
 
   return (
     <div className="flex-1 flex flex-col">
@@ -86,31 +118,9 @@ export default async function HomePage() {
                 </div>
               </div>
 
-              {/* Hero Image / Banner Showcase */}
+              {/* Hero Image / Carrossel dos Mais Vendidos */}
               <div className="lg:col-span-5 relative">
-                <div className="relative mx-auto max-w-md lg:max-w-none">
-                  {/* Glow decorativo */}
-                  <div className="absolute -inset-4 bg-gradient-to-r from-sky-400/20 to-indigo-500/20 rounded-3xl blur-2xl"></div>
-
-                  <div className="relative bg-white p-4 rounded-3xl shadow-2xl border border-slate-100">
-                    <img
-                      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=1000&auto=format&fit=crop&q=80"
-                      alt="Smartwatch Ultra Pro Max"
-                      className="rounded-2xl w-full object-cover aspect-[4/3]"
-                    />
-
-                    {/* Card Flutuante de Conversão */}
-                    <div className="absolute -bottom-6 -left-6 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600">
-                        <CheckCircle2 className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <span className="text-xs text-slate-400 block font-medium">Novo Pedido Aprovado</span>
-                        <span className="text-sm font-bold text-slate-800">Smartwatch Ultra • SP</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <HeroProductCarousel products={carouselProducts} />
               </div>
             </div>
           </div>
