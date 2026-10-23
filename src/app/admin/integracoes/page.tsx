@@ -2,7 +2,7 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { AdminIntegrationsClient } from "./AdminIntegrationsClient";
 
-export const dynamic = "force-dynamic";
+
 
 export default async function AdminIntegrationsPage() {
   const channels = await prisma.integrationChannel.findMany({

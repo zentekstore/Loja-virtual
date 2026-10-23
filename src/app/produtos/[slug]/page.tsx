@@ -5,22 +5,39 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductDetailsClient } from "./ProductDetailsClient";
 
-export const dynamic = "force-dynamic";
-
 interface Props {
   params: Promise<{ slug: string }>;
+}
+
+export async function generateStaticParams() {
+  try {
+    const products = await prisma.product.findMany({ select: { slug: true } });
+    return products.map((p) => ({ slug: p.slug }));
+  } catch (e) {
+    return [
+      { slug: "smartwatch-ultra-pro-max-49mm" },
+      { slug: "fone-tws-wireless-pro-anc" },
+      { slug: "mochila-executiva-antifurto-impermeavel" },
+      { slug: "luminaria-inteligente-led-rgb-inducao" },
+    ];
+  }
 }
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
-    include: {
-      variants: true,
-      supplier: true,
-    },
-  });
+  let product = null;
+  try {
+    product = await prisma.product.findUnique({
+      where: { slug },
+      include: {
+        variants: true,
+        supplier: true,
+      },
+    });
+  } catch (e) {
+    // Fallback se o db não estiver presente
+  }
 
   if (!product) {
     notFound();

@@ -12,7 +12,7 @@ import {
   Share2,
 } from "lucide-react";
 
-export const dynamic = "force-dynamic";
+
 
 export default async function AdminDashboardPage() {
   const orders = await prisma.order.findMany({

@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 
-export const dynamic = "force-dynamic";
+
 
 export default async function ProductsCatalogPage() {
   const products = await prisma.product.findMany({

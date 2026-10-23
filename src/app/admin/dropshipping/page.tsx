@@ -2,7 +2,7 @@ import React from "react";
 import { prisma } from "@/lib/prisma";
 import { AdminDropshippingClient } from "./AdminDropshippingClient";
 
-export const dynamic = "force-dynamic";
+
 
 export default async function AdminDropshippingPage() {
   const orders = await prisma.order.findMany({
