@@ -62,10 +62,10 @@ export function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded-lg bg-sky-500 flex items-center justify-center text-white font-bold text-base">
-                N
+                Z
               </div>
               <span className="text-lg font-black tracking-tight text-white">
-                NEXUS<span className="text-sky-400">DROP</span>
+                ZENTEK<span className="text-sky-400">STORE</span>
               </span>
             </div>
             <p className="text-sm text-gray-400">
@@ -159,7 +159,7 @@ export function Footer() {
 
         {/* Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
-          <p>© {new Date().getFullYear()} NexusDrop E-commerce. Todos os direitos reservados.</p>
+          <p>© {new Date().getFullYear()} Zentek Store. Todos os direitos reservados.</p>
           <p className="flex items-center gap-1">
             Desenvolvido com tecnologia de última geração para alta performance.
           </p>

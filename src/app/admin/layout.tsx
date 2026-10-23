@@ -23,11 +23,11 @@ export default function AdminLayout({
         <div className="p-6 border-b border-slate-800 flex items-center justify-between">
           <Link href="/admin" className="flex items-center gap-2">
             <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-sky-500/20">
-              N
+              Z
             </div>
             <div>
               <span className="font-black text-white text-base tracking-tight block">
-                NEXUS<span className="text-sky-400">HUB</span>
+                ZENTEK<span className="text-sky-400">HUB</span>
               </span>
               <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider block">
                 Omnichannel & Dropship

@@ -33,7 +33,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Carregar carrinho do localStorage
   useEffect(() => {
     try {
-      const saved = localStorage.getItem("nexus_cart");
+      const saved = localStorage.getItem("zentek_cart");
       if (saved) {
         setItems(JSON.parse(saved));
       }
@@ -45,7 +45,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   // Salvar alterações
   useEffect(() => {
     try {
-      localStorage.setItem("nexus_cart", JSON.stringify(items));
+      localStorage.setItem("zentek_cart", JSON.stringify(items));
     } catch (e) {
       console.error(e);
     }

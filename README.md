@@ -1,4 +1,4 @@
-# 🚀 NexusDrop — Loja Virtual Omnichannel & Hub de Dropshipping
+# 🚀 Zentek Store — Loja Virtual Omnichannel & Hub de Dropshipping
 
 Plataforma completa de **Loja Virtual de Alta Conversão**, integrada a um **Hub Omnichannel** para sincronização com **Shopify**, **Nuvemshop**, **Mercado Livre**, **Shopee** e fornecedores de **Dropshipping** (CJ Dropshipping, AliExpress e Fornecedores Nacionais).
 

@@ -4,7 +4,7 @@ import { CartProvider } from "@/context/CartContext";
 import { CartDrawer } from "@/components/CartDrawer";
 
 export const metadata: Metadata = {
-  title: "NexusDrop | Loja Virtual & Hub de Dropshipping Multicanal",
+  title: "Zentek Store | Loja Virtual & Hub de Dropshipping Multicanal",
   description:
     "E-commerce de alta performance integrado com Shopify, Nuvemshop, Mercado Livre e fornecedores globais de dropshipping.",
   keywords: ["loja virtual", "dropshipping", "e-commerce", "shopify", "nuvemshop", "mercado livre"],

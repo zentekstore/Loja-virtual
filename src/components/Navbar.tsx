@@ -41,11 +41,11 @@ export function Navbar() {
         <div className="flex items-center gap-8">
           <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-sky-500 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-md shadow-sky-500/20 group-hover:scale-105 transition-transform">
-              N
+              Z
             </div>
             <div>
               <span className="text-xl font-extrabold tracking-tight text-gray-900 flex items-center gap-1">
-                NEXUS<span className="text-sky-600">DROP</span>
+                ZENTEK<span className="text-sky-600">STORE</span>
               </span>
               <span className="block text-[10px] font-semibold tracking-widest text-gray-400 uppercase">
                 Omnichannel Hub

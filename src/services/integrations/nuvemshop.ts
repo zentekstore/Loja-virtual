@@ -59,7 +59,7 @@ export class NuvemshopService {
         headers: {
           "Content-Type": "application/json",
           Authentication: `bearer ${this.token}`,
-          "User-Agent": "NexusDrop E-commerce Hub (contato@nexusdrop.com)",
+          "User-Agent": "Zentek Store Hub (contato@zentekstore.com)",
         },
         body: JSON.stringify(this.formatProduct(product)),
       });
